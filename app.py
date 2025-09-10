@@ -1,32 +1,15 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import Mapped, mapped_column
+from flask import Flask
+from app1 import db
+from routes import configure_routes
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
 
-# Create the db instance and bind immediately
-db = SQLAlchemy(app)
+db.init_app(app)
+configure_routes(app)
 
-@app.route("/main")
-def main():
-    return render_template("main.html")
-
-@app.route("/")
-def index():
-   return render_template("index.html")
-
-@app.route("/register")
-def register():
-     return render_template("register.html")
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
-
-@app.route("/logout")
-def logout():
-     return render_template("logout.html")
-
-if __name__ == "__main__":
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

@@ -1,0 +1,41 @@
+I am building a Flask web app. Please update it with the following requirements while keeping the existing functionality (registration, login, dashboard, load money, send money) constant:
+
+Sticky Footer
+
+Add a footer to the web app that always stays fixed at the bottom of the page, regardless of content height.
+
+Use CSS to make it a proper sticky footer.
+
+Database Tables (Normalization)
+
+Create two separate tables instead of one:
+
+Users Table: stores id, username, password_hash.
+
+Profiles Table: stores profile_id, user_id (foreign key), age, balance.
+
+Ensure that user_id in Profiles references id in Users (primary-foreign key relationship).
+
+Registration
+
+When a user registers:
+
+Insert into Users table → username, hashed password.
+
+Insert into Profiles table → linked user_id, age, and initialize balance to 0.
+
+Dashboard
+
+On login, show the user’s dashboard.
+
+Display their username, age, and current balance from the Profiles table.
+
+Keep Load Money and Send Money features working with the new schema (update balance in Profiles table, not Users).
+
+Project Structure
+
+Use SQLAlchemy models for Users and Profiles, with relationships defined.
+
+Keep the Flask app modular (split into app.py, models.py, routes.py, templates/).
+
+👉 Implement the changes step by step with clean Flask code and SQLAlchemy relationships, while keeping the existing money transfer logic working.
